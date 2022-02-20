@@ -1,0 +1,10 @@
+@model IEnumerable<lastTesting.Models.Publisher>
+
+
+@foreach (var item in Model)
+{
+    item.Name // one way 
+    @Html.DisplayFor(modelItem => item.Name) // secound way 
+
+    
+}
