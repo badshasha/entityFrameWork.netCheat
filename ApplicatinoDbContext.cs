@@ -12,6 +12,7 @@ namespace lastTesting.data
         }
 
         public DbSet<Publisher> publishers { get; set; } // table and table name 
+        public DbSet<Book> Books{get ;set;} // secound table 
 
     }
 }
