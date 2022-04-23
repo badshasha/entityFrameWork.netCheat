@@ -62,6 +62,29 @@ namespace Recalla.Services
 
         }
 
+         public Publisher? UpdatePulishers(int id, PublisherViewModel publisherInfo) {
+            Publisher selectedPublisher =  this._context.publishers.FirstOrDefault(p => p.ID == id);
+            if (selectedPublisher != null) { 
+                selectedPublisher.PublisherCountry = publisherInfo.PublisherCountry;
+                selectedPublisher.PublisherName = publisherInfo.PublisherName;
+                selectedPublisher.PublisherDescription = publisherInfo.PublisherDescription;
+
+                this._context.SaveChanges(); 
+            }
+            return selectedPublisher;
+        }
+
+        public bool DeletePublisherId(int id) {
+            Publisher selectedPublisher = this._context.publishers.FirstOrDefault(p => p.ID == id);
+            if (selectedPublisher != null) {
+                this._context.publishers.Remove(selectedPublisher);
+                this._context.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+    }
+
 
     }
 }
