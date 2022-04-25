@@ -33,4 +33,17 @@ namespace Recalla.Model.ViewModel
             return bookWithAuther;            
         }
     
-    
+
+// another 
+
+        // authers books 
+        public AutherVm? GetAutherwithBooks(int AutherId) {
+            var _autherWithBooks = this._context.Authers.Where(a => a.Id == AutherId).Select(q => new AutherVm()
+            {
+                FirstName = q.FirstName,
+                LastName = q.LastName,
+                BookNames = q.BookAutherModels.Select(x => x.Book.Title).ToList()
+            }).FirstOrDefault();
+            return _autherWithBooks;
+        }
+         
