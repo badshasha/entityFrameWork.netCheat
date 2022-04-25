@@ -47,3 +47,47 @@ namespace Recalla.Model.ViewModel
             return _autherWithBooks;
         }
          
+
+
+
+         /////////////////////////// most advance 
+
+namespace Recalla.Model.ViewModel
+{
+    public class PublisherVm
+    {
+
+        public string PublisherName { get; set; }
+        public string PublisherCountry { get; set; }
+        public string PublisherDescription { get; set; }
+
+        public List<BookWithAuther> BookAuthers  { get; set; }
+    }
+
+
+    public class BookWithAuther { 
+        
+        public string Title { get; set; }
+        public List<string> Authersname { get; set; }
+    }
+}
+
+// tow model s selection 
+
+
+
+
+            public PublisherVm? GetPulisherwihAllBooksAndAuthers(int publisherId) {
+            var _publisherWithBooksAndAuthers = this._context.publishers.Where(publisher => publisher.ID == publisherId).Select(n => new PublisherVm()
+            {
+                PublisherName = n.PublisherName,
+                PublisherCountry = n.PublisherCountry,
+                PublisherDescription = n.PublisherDescription,
+                BookAuthers = n.Books.Select(x => new BookWithAuther()
+                {
+                    Title = x.Title,
+                    Authersname = x.BookAutherModels.Select(y => y.Auther.FirstName).ToList()
+                }).ToList()
+            }).FirstOrDefault();
+            return _publisherWithBooksAndAuthers;
+        }
