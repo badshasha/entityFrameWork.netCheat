@@ -31,3 +31,23 @@ most comman exception
                 return BadRequest(ex.Message);
             }
             
+
+            // mulitple 
+            
+            try
+            {
+                int i = 1;
+                int o = 0;
+                int result = i / o; // this thing cause error 
+                return Ok(this._bookService.DeleteBook(id));
+            }
+            catch (ArithmeticException ex) {
+                return BadRequest($"{ex.Message} and custom message");
+            }
+            catch (Exception ex)
+            {
+                // return BadRequest("custom message")
+                return BadRequest(ex.Message);
+            }
+            
+        
